@@ -1,9 +1,13 @@
 import os
 from flask import Flask
+from pymongo import MongoClient
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
-print(app.config)
+
+client = MongoClient("mongodb+srv://erica:<password>@cluster0-kykqg.mongodb.net/test?retryWrites=true&w=majority")
+db = client.test
+print (client)
 
 @app.route('/')
 def hello():
