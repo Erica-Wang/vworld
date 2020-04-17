@@ -1,0 +1,18 @@
+movements of people:
+- random turn when reach x number of steps 
+	(initialized for each person)
+- random turn when reach border of screen
+- when two people arrive at one spot at the same time,
+	stop for 2 cycles 
+	add 1 to #of interactions
+
+print out 
+- how many interactions they have had
+- how many steps were taken
+
+later features
+- more times you meet, the longer you stay together
+- possibly building a relationship index?
+
+applications
+- if i can model a city/town, and add in each person's habits mmmm
