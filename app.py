@@ -1,21 +1,32 @@
 import os
 from flask import Flask
 from pymongo import MongoClient
+import constants
+from flask import jsonify
 
 app = Flask(__name__)
 app.config.from_object(os.environ['APP_SETTINGS'])
 
-client = MongoClient("mongodb+srv://erica:<password>@cluster0-kykqg.mongodb.net/test?retryWrites=true&w=majority")
-db = client.test
+client = MongoClient(constants.MONGO_URL)
+db = client.world
 print (client)
 
 @app.route('/')
 def hello():
 	return "hi world"
 
-@app.route('/<name>')
-def hello_name(name):
-	return "Hello {}".format(name)
+@app.route('/locations')
+def getLocations():
+	collection = db.people
+	people = []
+	for person in collection.find():
+		p = {
+			"id":person['id'],
+			"x":person['x'],
+			"y":person['y']
+		}
+		people.append(p)
+	return jsonify(people)
 
 if __name__ == '__main__':
 	app.run()
